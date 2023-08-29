@@ -8,6 +8,14 @@ const refs = {
 dropDownMenu: document.querySelector ('.breed-select'),
 };
 
-fetchBreeds();
+const test = fetchBreeds();
+
+console.log(test);
+
+function catsSelector(arr) {
+   return arr.map(({ id, name }) => { `<option value="${id}">${name}</option>` }).join('');
+}
+
+
 
 // console.log(fetchBreeds())
