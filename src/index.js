@@ -20,7 +20,8 @@ function catsSelectorMarkup(arr) {
 
 
 
-fetchBreeds({id,name})
-.
+// fetchBreeds({ id, name }) {
+   
+// };
 
 
