@@ -1,8 +1,5 @@
-import axios from 'axios';
-axios.defaults.headers.common['x-api-key'] =
-  'live_fRWteppQp5QuzzEUJhf1msveKO9JBnOqUGQgzkqPKAfAKyfAENHU7maeb3sfPrvh';
-
 import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
+import SlimSelect from 'slim-select'
 
 const refs = {
   dropDownMenu: document.querySelector('.breed-select'),
@@ -10,6 +7,10 @@ const refs = {
   loader: document.querySelector('.loader'),
   error: document.querySelector('.error'),
 };
+
+new SlimSelect({
+  select: document.querySelector('.breed-select')
+})
 
 function catsSelectorMarkup(arr) {
   const markup = arr
@@ -35,10 +36,10 @@ function cantInfoMarkup(arr) {
   const markup = arr
     .map(
       ({ name, description, temperament }) =>
-        `<div style="margin-top:20px ">
-         <h2>${name}</h2>
+        `<div style="margin-top:20px; width:600px;">
+         <h2 style="margin-top:0">${name}</h2>
          <p>${description}</p>
-         <p><span style="font-weigth:500">Temperament:</span> ${temperament}</p>
+         <p><span style="font-weight: 800;">Temperament:</span> ${temperament}</p>
       </div>
    `
     )
@@ -60,7 +61,7 @@ refs.dropDownMenu.addEventListener('change', event => {
   fetchCatByBreed(targetId)
     .then(results => {
        refs.loader.hidden = true;
-       refs.container.setAttribute("style", "display:flex gap:40px");
+       refs.container.setAttribute("style", "display:flex; gap:20px; flex-direction:row;");
 
       console.log(results.data);
       console.log(results.data[0].breeds);
