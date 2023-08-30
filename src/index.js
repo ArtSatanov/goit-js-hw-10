@@ -8,14 +8,19 @@ const refs = {
 dropDownMenu: document.querySelector ('.breed-select'),
 };
 
-const test = fetchBreeds();
+// const test = fetchBreeds();
 
-console.log(test);
+// console.log(test);
 
-function catsSelector(arr) {
-   return arr.map(({ id, name }) => { `<option value="${id}">${name}</option>` }).join('');
+function catsSelectorMarkup(arr) {
+   const markup = arr.map(({ id, name }) => { `<option value="${id}">${name}</option>` }).join('');
+   refs.dropDownMenu.insertAdjacentHTML('beforeend', markup);
 }
 
 
 
-// console.log(fetchBreeds())
+
+fetchBreeds({id,name})
+.
+
+
