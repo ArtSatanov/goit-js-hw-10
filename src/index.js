@@ -1,6 +1,6 @@
 import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
-// import SlimSelect from 'slim-select';
-// import 'slim-select/dist/slimselect.css'
+import SlimSelect from 'slim-select';
+import 'slim-select/dist/slimselect.css'
 
 const refs = {
   dropDownMenu: document.querySelector('.breed-select'),
@@ -9,9 +9,9 @@ const refs = {
   error: document.querySelector('.error'),
 };
 
-// new SlimSelect({
-//   select: document.querySelector('.breed-select')
-// })
+new SlimSelect({
+  select: document.querySelector('.breed-select')
+})
 
 function catsSelectorMarkup(arr) {
   const markup = arr
