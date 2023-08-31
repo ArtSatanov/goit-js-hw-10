@@ -1,5 +1,6 @@
 import axios from "axios";
 axios.defaults.headers.common["x-api-key"] = "live_fRWteppQp5QuzzEUJhf1msveKO9JBnOqUGQgzkqPKAfAKyfAENHU7maeb3sfPrvh";
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 function fetchBreeds() {
 return axios.get('https://api.thecatapi.com/v1/breeds')
@@ -8,7 +9,7 @@ return axios.get('https://api.thecatapi.com/v1/breeds')
    }
 )
    .catch(() => {
-      console.log('Something went wrong!!!');
+      Notify.failure('Oops! Something went wrong! Try reloading the page!');
    }
    );
 };
@@ -24,7 +25,7 @@ function fetchCatByBreed (breedId) {
          return resp;
       })
 
-      .catch(() => { console.log("Error")})
+      .catch(() => { Notify.failure('Oops! Something went wrong! Try reloading the page!'); })
 };
 
 

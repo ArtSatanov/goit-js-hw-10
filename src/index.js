@@ -1,7 +1,7 @@
 import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
 import SlimSelect from 'slim-select';
 import 'slim-select/dist/slimselect.css'
-import Notiflix from 'notiflix';
+
 
 const refs = {
   dropDownMenu: document.querySelector('.breed-select'),
@@ -45,14 +45,12 @@ function cantInfoMarkup(arr) {
   refs.container.insertAdjacentHTML('beforeend', markup);
 }
 
-fetchBreeds().then(results => {
+fetchBreeds()
+  .then(results => {
   catsSelectorMarkup(results.data);
   new SlimSelect({
   select: refs.dropDownMenu,
   })
-      .catch(() => {
-      Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!');
-    });
 });
 
 refs.dropDownMenu.addEventListener('change', event => {
@@ -69,7 +67,4 @@ refs.dropDownMenu.addEventListener('change', event => {
       cantInfoMarkupPic(results.data);
       cantInfoMarkup(results.data[0].breeds);
     })
-    .catch(() => {
-      Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!');
-    });
 });
