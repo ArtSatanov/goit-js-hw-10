@@ -4,7 +4,6 @@ axios.defaults.headers.common["x-api-key"] = "live_fRWteppQp5QuzzEUJhf1msveKO9JB
 function fetchBreeds() {
 return axios.get('https://api.thecatapi.com/v1/breeds')
    .then((resp) => {
-      console.log(resp)
       return resp;
    }
 )
@@ -22,7 +21,6 @@ function fetchCatByBreed (breedId) {
    })
       
       .then((resp) => { 
-         console.log(resp)
          return resp;
       })
 
