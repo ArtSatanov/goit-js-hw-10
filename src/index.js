@@ -1,7 +1,7 @@
 import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
 import SlimSelect from 'slim-select';
 import 'slim-select/dist/slimselect.css'
-
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const refs = {
   dropDownMenu: document.querySelector('.breed-select'),
@@ -58,13 +58,20 @@ refs.dropDownMenu.addEventListener('change', event => {
   refs.loader.hidden = false;
 
   let targetId = event.target.value;
-
+  console.log(targetId);
   fetchCatByBreed(targetId)
     .then(results => {
+      if (results.data.length > 0) {
        refs.loader.hidden = true;
        refs.container.setAttribute("style", "display:flex; gap:20px; flex-direction:row;");
-
+      console.log(results.data);
+      console.log(results.data[0].breeds);
       cantInfoMarkupPic(results.data);
       cantInfoMarkup(results.data[0].breeds);
+      } else {
+        refs.loader.hidden = true;
+        Notify.failure('Oops! Something went wrong! Try reloading the page!');
+      }
+      
     })
 });
