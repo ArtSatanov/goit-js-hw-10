@@ -8,7 +8,8 @@ const refs = {
   container: document.querySelector('.cat-info'),
   loader: document.querySelector('.loader'),
   error: document.querySelector('.error'),
-  input: document.querySelector('.test')
+  input: document.querySelector('.test'),
+  inputRecipe: document.querySelector('.test-recipe-card')
 };
   
 console.log(refs);
@@ -81,31 +82,39 @@ console.log(refs);
 
 
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>THEME CHNAGER >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-refs.input.addEventListener('click', themeChangerTolocalStorage);
+// refs.input.addEventListener('click', themeChangerTolocalStorage);
 
-function themeChangerTolocalStorage(event) {
-  event.target.checked ? localStorage.setItem('themeColor', 'dark') : localStorage.setItem('themeColor', 'white');
-  let currentStyle = localStorage.getItem('themeColor');
-if (currentStyle === 'white') {
-    // Add here class with dark design to elemtnts
-    document.querySelector('body').style.backgroundColor = "red";  
-} else if (currentStyle === 'dark') {
-    // Add here class with dark design to elemtnts
-   document.querySelector('body').style.backgroundColor = "black"
-  }
-}
+// function themeChangerTolocalStorage(event) {
+//   event.target.checked ? localStorage.setItem('themeColor', 'dark') : localStorage.setItem('themeColor', 'white');
+//   let theme = localStorage.getItem('themeColor');
+// if (theme === 'white') {
+//     // Add here class with dark design to elemtnts
+//     document.querySelector('body').style.backgroundColor = "red";  
+// } else if (theme === 'dark') {
+//     // Add here class with dark design to elemtnts
+//    document.querySelector('body').style.backgroundColor = "black"
+//   }
+// }
 
 
-let currentStyle = localStorage.getItem('themeColor');
+// let currentStyle = localStorage.getItem('themeColor');
 
-if (currentStyle === 'white' || currentStyle === null) {
-  // change the ref
-  refs.input.checked = false;
-    // Add here class with dark design to elemtnts
-    document.querySelector('body').style.backgroundColor = "red";  
-} else if (currentStyle === 'dark') {
-    // change the ref
-  refs.input.checked = true;
-    // Add here class with dark design to elemtnts
-   document.querySelector('body').style.backgroundColor = "black"
-  }
+// if (currentStyle === 'white' || currentStyle === null) {
+//   // change the ref
+//   refs.input.checked = false;
+//     // Add here class with dark design to elemtnts
+//     document.querySelector('body').style.backgroundColor = "red";  
+// } else if (currentStyle === 'dark') {
+//     // change the ref
+//   refs.input.checked = true;
+//     // Add here class with dark design to elemtnts
+//    document.querySelector('body').style.backgroundColor = "black"
+// }
+  
+// .....................................................................................................................................................
+
+
+
+
+
+
