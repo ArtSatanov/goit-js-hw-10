@@ -8,7 +8,7 @@ const refs = {
   container: document.querySelector('.cat-info'),
   loader: document.querySelector('.loader'),
   error: document.querySelector('.error'),
-  input: document.querySelector('input[checkbox]'),
+  input: document.querySelector('.test')
 };
   
 console.log(refs);
@@ -79,6 +79,33 @@ console.log(refs);
 //     })
 // });
 
-function themeChanger() {
-  
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>THEME CHNAGER >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+refs.input.addEventListener('click', themeChangerTolocalStorage);
+
+function themeChangerTolocalStorage(event) {
+  event.target.checked ? localStorage.setItem('themeColor', 'dark') : localStorage.setItem('themeColor', 'white');
+  let currentStyle = localStorage.getItem('themeColor');
+if (currentStyle === 'white') {
+    // Add here class with dark design to elemtnts
+    document.querySelector('body').style.backgroundColor = "red";  
+} else if (currentStyle === 'dark') {
+    // Add here class with dark design to elemtnts
+   document.querySelector('body').style.backgroundColor = "black"
+  }
 }
+
+
+let currentStyle = localStorage.getItem('themeColor');
+
+if (currentStyle === 'white' || currentStyle === null) {
+  // change the ref
+  refs.input.checked = false;
+    // Add here class with dark design to elemtnts
+    document.querySelector('body').style.backgroundColor = "red";  
+} else if (currentStyle === 'dark') {
+    // change the ref
+  refs.input.checked = true;
+    // Add here class with dark design to elemtnts
+   document.querySelector('body').style.backgroundColor = "black"
+  }
