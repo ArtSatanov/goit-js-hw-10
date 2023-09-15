@@ -2,6 +2,33 @@ import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
 import SlimSelect from 'slim-select';
 import 'slim-select/dist/slimselect.css'
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import axios from 'axios';
+
+
+const GET_ALL_RECIPES = '/recipes';
+const GET_ALL_POPULAR_RECIPES = '/recipes/popular';
+const GET_RECIPES_BY_ID = '/recipes/{id}';
+const ADD_RESIPES_RATING = '/recipes/{id}/rating';
+const GET_ALL_AREAS = '/areas';
+const GET_ALL_CATEGORIES = '/categories';
+const GET_ALL_EVENTS = '/events';
+const GET_ALL_INGREDIENTS = '/ingredients';
+const ADD_ORDER = '/orders/add';
+
+const ID = `{id}`;
+
+axios.defaults.baseURL = 'https://tasty-treats-backend.p.goit.global/api';
+// Додаємо перехоплювач відповідей
+axios.interceptors.response.use(
+  response => {
+    return response;
+  },
+  error => {
+    return Promise.reject(error);
+    console.log(error);
+  }
+);
+
 
 const refs = {
   dropDownMenu: document.querySelector('.breed-select'),
@@ -9,7 +36,7 @@ const refs = {
   loader: document.querySelector('.loader'),
   error: document.querySelector('.error'),
   input: document.querySelector('.test'),
-  inputRecipe: document.querySelector('.test-recipe-card')
+  inputRecipe: document.querySelector('.test-recipe-cards')
 };
   
 console.log(refs);
@@ -114,7 +141,33 @@ console.log(refs);
 // .....................................................................................................................................................
 
 
+function getRecipeId(event) {
+  console.log(event.target.parentNode.dataset.id); 
+  return event.target.parentNode.dataset.id;
+}
 
+
+async function getResipesById(id) {
+  const response = await axios.get(`${GET_RECIPES_BY_ID}`.replace(ID, id));
+  console.log(response.data);
+  return response.data;
+}
+
+function onLikeClick(event) {
+  const id = getRecipeId(event);
+  getResipesById(id)
+    .then (
+      (data) => { if (event.target.parentNode.dataset.id) {
+        const favRecData = JSON.parse(localStorage.getItem('favRecData')) || [];
+        favRecData.push(data);
+        console.log(favRecData);
+        localStorage.setItem('favRecData', JSON.stringify(favRecData))
+      }})
+}
+
+
+
+refs.inputRecipe.addEventListener('click',onLikeClick)
 
 
 
