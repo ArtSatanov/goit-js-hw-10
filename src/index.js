@@ -143,6 +143,7 @@ console.log(refs);
 
 function getRecipeId(event) {
   console.log(event.target.parentNode.dataset.id); 
+  console.log(event.target);
   return event.target.parentNode.dataset.id;
 }
 
@@ -157,13 +158,26 @@ function onLikeClick(event) {
   const id = getRecipeId(event);
   getResipesById(id)
     .then (
-      (data) => { if (event.target.parentNode.dataset.id) {
+      (data) => {
         const favRecData = JSON.parse(localStorage.getItem('favRecData')) || [];
+        if (event.target.checked === true) {
         favRecData.push(data);
         console.log(favRecData);
         localStorage.setItem('favRecData', JSON.stringify(favRecData))
-      }})
+      } else if (event.target.checked === false) {
+        console.log(id)
+        console.log(favRecData.findIndex(RecData => RecData._id === id))
+        const objToRemove = favRecData.findIndex(recData => recData._id === id);
+          favRecData.splice(objToRemove, 1);
+        }
+        localStorage.setItem('favRecData', JSON.stringify(favRecData));
+      })
 }
+
+function getFavRec() {
+  return JSON.parse(localStorage.getItem('favRecData')) || [];
+}
+
 
 
 
