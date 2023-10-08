@@ -109,76 +109,76 @@ console.log(refs);
 
 
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>THEME CHNAGER >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-// refs.input.addEventListener('click', themeChangerTolocalStorage);
+refs.input.addEventListener('click', themeChangerTolocalStorage);
 
-// function themeChangerTolocalStorage(event) {
-//   event.target.checked ? localStorage.setItem('themeColor', 'dark') : localStorage.setItem('themeColor', 'white');
-//   let theme = localStorage.getItem('themeColor');
-// if (theme === 'white') {
-//     // Add here class with dark design to elemtnts
-//     document.querySelector('body').style.backgroundColor = "red";  
-// } else if (theme === 'dark') {
-//     // Add here class with dark design to elemtnts
-//    document.querySelector('body').style.backgroundColor = "black"
-//   }
-// }
+function themeChangerTolocalStorage(event) {
+  event.target.checked ? localStorage.setItem('themeColor', 'dark') : localStorage.setItem('themeColor', 'white');
+  let theme = localStorage.getItem('themeColor');
+if (theme === 'white') {
+    // Add here class with dark design to elemtnts
+    document.querySelector('body').style.backgroundColor = "red";  
+} else if (theme === 'dark') {
+    // Add here class with dark design to elemtnts
+   document.querySelector('body').style.backgroundColor = "black"
+  }
+}
 
-// function stylesAfterReload() {
-// let currentStyle = localStorage.getItem('themeColor');
+function stylesAfterReload() {
+let currentStyle = localStorage.getItem('themeColor');
 
-// if (currentStyle === 'white' || currentStyle === null) {
-//   // change the ref
-//   refs.input.checked = false;
-//     // Add here class with dark design to elemtnts
-//     document.querySelector('body').style.backgroundColor = "red";  
-// } else if (currentStyle === 'dark') {
-//     // change the ref
-//   refs.input.checked = true;
-//     // Add here class with dark design to elemtnts
-//    document.querySelector('body').style.backgroundColor = "black"
-//   }
-// }
-//   stylesAfterReload()
+if (currentStyle === 'white' || currentStyle === null) {
+  // change the ref
+  refs.input.checked = false;
+    // Add here class with dark design to elemtnts
+    document.querySelector('body').style.backgroundColor = "red";  
+} else if (currentStyle === 'dark') {
+    // change the ref
+  refs.input.checked = true;
+    // Add here class with dark design to elemtnts
+   document.querySelector('body').style.backgroundColor = "black"
+  }
+}
+  stylesAfterReload()
   
 // .....................................................................................................................................................
 
 
-function getRecipeId(event) {
-  console.log(event.target.parentNode.dataset.id); 
-  console.log(event.target);
-  return event.target.parentNode.dataset.id;
-}
+// function getRecipeId(event) {
+//   console.log(event.target.parentNode.dataset.id); 
+//   console.log(event.target);
+//   return event.target.parentNode.dataset.id;
+// }
 
 
-async function getResipesById(id) {
-  const response = await axios.get(`${GET_RECIPES_BY_ID}`.replace(ID, id));
-  console.log(response.data);
-  return response.data;
-}
+// async function getResipesById(id) {
+//   const response = await axios.get(`${GET_RECIPES_BY_ID}`.replace(ID, id));
+//   console.log(response.data);
+//   return response.data;
+// }
 
-function onLikeClick(event) {
-  const id = getRecipeId(event);
-  getResipesById(id)
-    .then (
-      (data) => {
-        const favRecData = JSON.parse(localStorage.getItem('favRecData')) || [];
-        if (event.target.checked === true) {
-        favRecData.push(data);
-        console.log(favRecData);
-        localStorage.setItem('favRecData', JSON.stringify(favRecData))
-      } else if (event.target.checked === false) {
-        console.log(id)
-        console.log(favRecData.findIndex(RecData => RecData._id === id))
-        const objToRemove = favRecData.findIndex(recData => recData._id === id);
-          favRecData.splice(objToRemove, 1);
-        }
-        localStorage.setItem('favRecData', JSON.stringify(favRecData));
-      })
-}
+// function onLikeClick(event) {
+//   const id = getRecipeId(event);
+//   getResipesById(id)
+//     .then (
+//       (data) => {
+//         const favRecData = JSON.parse(localStorage.getItem('favRecData')) || [];
+//         if (event.target.checked === true) {
+//         favRecData.push(data);
+//         console.log(favRecData);
+//         localStorage.setItem('favRecData', JSON.stringify(favRecData))
+//       } else if (event.target.checked === false) {
+//         console.log(id)
+//         console.log(favRecData.findIndex(RecData => RecData._id === id))
+//         const objToRemove = favRecData.findIndex(recData => recData._id === id);
+//           favRecData.splice(objToRemove, 1);
+//         }
+//         localStorage.setItem('favRecData', JSON.stringify(favRecData));
+//       })
+// }
 
-function getFavRec() {
-  return JSON.parse(localStorage.getItem('favRecData')) || [];
-}
+// function getFavRec() {
+//   return JSON.parse(localStorage.getItem('favRecData')) || [];
+// }
 
 // let favRecData = getFavRec();
 // console.log(favRecData);
@@ -207,7 +207,7 @@ function getFavRec() {
 
 
 
-refs.inputRecipe.addEventListener('click',onLikeClick)
+// refs.inputRecipe.addEventListener('click',onLikeClick)
 
 
 
